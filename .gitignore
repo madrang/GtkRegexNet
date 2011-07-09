@@ -4,9 +4,9 @@
 *.class
 *.dll
 *.exe
+*.exe.mdb
 *.o
 *.so
-
 
 # OS generated files #
 ######################
