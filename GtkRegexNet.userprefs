@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ctype="Workspace" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GtkRegexNet/MainWindow.cs" ctype="Workbench">
+    <Files>
+      <File FileName="GtkRegexNet/MainWindow.cs" Line="243" Column="5" />
+      <File FileName="GtkRegexNet/SettingFile.cs" Line="45" Column="59" />
+      <File FileName="GtkRegexNet/RegexFile.cs" Line="36" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches ctype="PinnedWatchStore" />
+</Properties>
