@@ -3,8 +3,11 @@
 *.com
 *.class
 *.dll
+*.dll.mdb
+*.dll.config
 *.exe
 *.exe.mdb
+*.exe.config
 *.o
 *.so
 
