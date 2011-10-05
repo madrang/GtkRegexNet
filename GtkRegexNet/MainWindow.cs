@@ -162,7 +162,7 @@ public partial class MainWindow : Gtk.Window
 				continue;
 			
 			//TreeView Add Match node.
-			TreeIter Iter = Store.AppendValues(MatchItem.ToString());
+			TreeIter Iter = Store.AppendValues(string.Format("Match: {0}", MatchItem.ToString()));
 			this.TreeAddMatch(Store, Iter, MatchItem);
 			
 			//Match TextView add color tag.
@@ -181,10 +181,10 @@ public partial class MainWindow : Gtk.Window
 			if(!GroupItem.Success)
 				continue;
 			
-			TreeIter GroupIter = store.AppendValues(iter, GroupItem.ToString());
+			TreeIter GroupIter = store.AppendValues(iter, string.Format("Group: {0}", GroupItem.ToString()));
 			
 			foreach (Capture CaptureItem in GroupItem.Captures) {
-				store.AppendValues(GroupIter, CaptureItem.ToString());
+				store.AppendValues(GroupIter, string.Format("Capture: {0}", CaptureItem.ToString()));
 			}
 		}
 	}
