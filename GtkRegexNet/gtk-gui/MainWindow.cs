@@ -4,87 +4,52 @@
 public partial class MainWindow
 {
 	private global::Gtk.UIManager UIManager;
-
 	private global::Gtk.Action openAction;
-
 	private global::Gtk.Action saveAction;
-
 	private global::Gtk.Action saveAsAction;
-
 	private global::Gtk.Action aboutAction;
-
 	private global::Gtk.VBox MainVBox;
-
 	private global::Gtk.Toolbar MainToolbar;
-
 	private global::Gtk.Frame RegexFrame;
-
 	private global::Gtk.Alignment GtkAlignment;
-
 	private global::Gtk.VBox RegexFrameVBox;
-
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
-
 	private global::Gtk.TextView RegexTextView;
-
-	private global::Gtk.HBox RegexFlagHBox;
-
+	private global::Gtk.Table RegexFlagTable;
+	private global::Gtk.CheckButton CultureInvariantCheckButton;
+	private global::Gtk.CheckButton ExplicitCaptureCheckButton;
 	private global::Gtk.CheckButton IgnoreCaseCheckButton;
-
 	private global::Gtk.CheckButton IgnorePatternWhitespaceCheckButton;
-
+	private global::Gtk.CheckButton MultilineCheckButton;
+	private global::Gtk.CheckButton RightToLeftCheckButton;
+	private global::Gtk.CheckButton SinglelineCheckButton;
 	private global::Gtk.Label RegexFrameLabel;
-
 	private global::Gtk.Frame InputFrame;
-
 	private global::Gtk.Alignment GtkAlignment1;
-
 	private global::Gtk.Notebook InputStringNotebook;
-
 	private global::Gtk.ScrolledWindow GtkScrolledWindow3;
-
 	private global::Gtk.TextView SearchInputTextView;
-
 	private global::Gtk.Label SearchInputLabel;
-
 	private global::Gtk.ScrolledWindow GtkScrolledWindow2;
-
 	private global::Gtk.TextView ReplaceInputTextView;
-
 	private global::Gtk.Label ReplaceInputLabel;
-
 	private global::Gtk.Label InputFrameLabel;
-
 	private global::Gtk.Frame ResultFrame;
-
 	private global::Gtk.Alignment GtkAlignment2;
-
 	private global::Gtk.Notebook ResultNotebook;
-
 	private global::Gtk.ScrolledWindow GtkScrolledWindow4;
-
 	private global::Gtk.TreeView GroupResultTreeView;
-
 	private global::Gtk.Label GroupResultLabel;
-
 	private global::Gtk.ScrolledWindow GtkScrolledWindow1;
-
 	private global::Gtk.TextView MatchResultTextView;
-
 	private global::Gtk.Label MatchResultLabel;
-
 	private global::Gtk.ScrolledWindow GtkScrolledWindow5;
-
 	private global::Gtk.TextView ReplaceResultTextView;
-
 	private global::Gtk.Label ReplaceResultLabel;
-
 	private global::Gtk.Label ResultFrameLabel;
-
 	private global::Gtk.Statusbar statusbar1;
-
 	private global::Gtk.Label RegexStatusLabel;
-
+    
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);
@@ -115,7 +80,7 @@ public partial class MainWindow
 		this.MainToolbar.Name = "MainToolbar";
 		this.MainToolbar.ShowArrow = false;
 		this.MainVBox.Add (this.MainToolbar);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.MainVBox[this.MainToolbar]));
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.MainVBox [this.MainToolbar]));
 		w2.Position = 0;
 		w2.Expand = false;
 		w2.Fill = false;
@@ -124,7 +89,7 @@ public partial class MainWindow
 		this.RegexFrame.Name = "RegexFrame";
 		this.RegexFrame.ShadowType = ((global::Gtk.ShadowType)(0));
 		// Container child RegexFrame.Gtk.Container+ContainerChild
-		this.GtkAlignment = new global::Gtk.Alignment (0f, 0f, 1f, 1f);
+		this.GtkAlignment = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
 		this.GtkAlignment.Name = "GtkAlignment";
 		this.GtkAlignment.LeftPadding = ((uint)(12));
 		// Container child GtkAlignment.Gtk.Container+ContainerChild
@@ -141,37 +106,104 @@ public partial class MainWindow
 		this.RegexTextView.Name = "RegexTextView";
 		this.GtkScrolledWindow.Add (this.RegexTextView);
 		this.RegexFrameVBox.Add (this.GtkScrolledWindow);
-		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.RegexFrameVBox[this.GtkScrolledWindow]));
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.RegexFrameVBox [this.GtkScrolledWindow]));
 		w4.Position = 0;
 		// Container child RegexFrameVBox.Gtk.Box+BoxChild
-		this.RegexFlagHBox = new global::Gtk.HBox ();
-		this.RegexFlagHBox.Name = "RegexFlagHBox";
-		this.RegexFlagHBox.Spacing = 6;
-		// Container child RegexFlagHBox.Gtk.Box+BoxChild
+		this.RegexFlagTable = new global::Gtk.Table (((uint)(3)), ((uint)(3)), false);
+		this.RegexFlagTable.Name = "RegexFlagTable";
+		this.RegexFlagTable.RowSpacing = ((uint)(6));
+		this.RegexFlagTable.ColumnSpacing = ((uint)(6));
+		// Container child RegexFlagTable.Gtk.Table+TableChild
+		this.CultureInvariantCheckButton = new global::Gtk.CheckButton ();
+		this.CultureInvariantCheckButton.CanFocus = true;
+		this.CultureInvariantCheckButton.Name = "CultureInvariantCheckButton";
+		this.CultureInvariantCheckButton.Label = global::Mono.Unix.Catalog.GetString ("CultureInvariant");
+		this.CultureInvariantCheckButton.DrawIndicator = true;
+		this.CultureInvariantCheckButton.UseUnderline = true;
+		this.RegexFlagTable.Add (this.CultureInvariantCheckButton);
+		global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.RegexFlagTable [this.CultureInvariantCheckButton]));
+		w5.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child RegexFlagTable.Gtk.Table+TableChild
+		this.ExplicitCaptureCheckButton = new global::Gtk.CheckButton ();
+		this.ExplicitCaptureCheckButton.CanFocus = true;
+		this.ExplicitCaptureCheckButton.Name = "ExplicitCaptureCheckButton";
+		this.ExplicitCaptureCheckButton.Label = global::Mono.Unix.Catalog.GetString ("ExplicitCapture");
+		this.ExplicitCaptureCheckButton.DrawIndicator = true;
+		this.ExplicitCaptureCheckButton.UseUnderline = true;
+		this.RegexFlagTable.Add (this.ExplicitCaptureCheckButton);
+		global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.RegexFlagTable [this.ExplicitCaptureCheckButton]));
+		w6.LeftAttach = ((uint)(1));
+		w6.RightAttach = ((uint)(2));
+		w6.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child RegexFlagTable.Gtk.Table+TableChild
 		this.IgnoreCaseCheckButton = new global::Gtk.CheckButton ();
 		this.IgnoreCaseCheckButton.CanFocus = true;
 		this.IgnoreCaseCheckButton.Name = "IgnoreCaseCheckButton";
 		this.IgnoreCaseCheckButton.Label = global::Mono.Unix.Catalog.GetString ("Ignore Case");
 		this.IgnoreCaseCheckButton.DrawIndicator = true;
 		this.IgnoreCaseCheckButton.UseUnderline = true;
-		this.RegexFlagHBox.Add (this.IgnoreCaseCheckButton);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.RegexFlagHBox[this.IgnoreCaseCheckButton]));
-		w5.Position = 0;
-		// Container child RegexFlagHBox.Gtk.Box+BoxChild
+		this.RegexFlagTable.Add (this.IgnoreCaseCheckButton);
+		global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.RegexFlagTable [this.IgnoreCaseCheckButton]));
+		w7.LeftAttach = ((uint)(2));
+		w7.RightAttach = ((uint)(3));
+		w7.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child RegexFlagTable.Gtk.Table+TableChild
 		this.IgnorePatternWhitespaceCheckButton = new global::Gtk.CheckButton ();
 		this.IgnorePatternWhitespaceCheckButton.CanFocus = true;
 		this.IgnorePatternWhitespaceCheckButton.Name = "IgnorePatternWhitespaceCheckButton";
 		this.IgnorePatternWhitespaceCheckButton.Label = global::Mono.Unix.Catalog.GetString ("IgnorePatternWhitespace");
 		this.IgnorePatternWhitespaceCheckButton.DrawIndicator = true;
 		this.IgnorePatternWhitespaceCheckButton.UseUnderline = true;
-		this.RegexFlagHBox.Add (this.IgnorePatternWhitespaceCheckButton);
-		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.RegexFlagHBox[this.IgnorePatternWhitespaceCheckButton]));
-		w6.Position = 1;
-		this.RegexFrameVBox.Add (this.RegexFlagHBox);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.RegexFrameVBox[this.RegexFlagHBox]));
-		w7.Position = 1;
-		w7.Expand = false;
-		w7.Fill = false;
+		this.RegexFlagTable.Add (this.IgnorePatternWhitespaceCheckButton);
+		global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.RegexFlagTable [this.IgnorePatternWhitespaceCheckButton]));
+		w8.TopAttach = ((uint)(1));
+		w8.BottomAttach = ((uint)(2));
+		w8.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child RegexFlagTable.Gtk.Table+TableChild
+		this.MultilineCheckButton = new global::Gtk.CheckButton ();
+		this.MultilineCheckButton.CanFocus = true;
+		this.MultilineCheckButton.Name = "MultilineCheckButton";
+		this.MultilineCheckButton.Label = global::Mono.Unix.Catalog.GetString ("Multiline");
+		this.MultilineCheckButton.DrawIndicator = true;
+		this.MultilineCheckButton.UseUnderline = true;
+		this.RegexFlagTable.Add (this.MultilineCheckButton);
+		global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.RegexFlagTable [this.MultilineCheckButton]));
+		w9.TopAttach = ((uint)(1));
+		w9.BottomAttach = ((uint)(2));
+		w9.LeftAttach = ((uint)(1));
+		w9.RightAttach = ((uint)(2));
+		w9.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child RegexFlagTable.Gtk.Table+TableChild
+		this.RightToLeftCheckButton = new global::Gtk.CheckButton ();
+		this.RightToLeftCheckButton.CanFocus = true;
+		this.RightToLeftCheckButton.Name = "RightToLeftCheckButton";
+		this.RightToLeftCheckButton.Label = global::Mono.Unix.Catalog.GetString ("RightToLeft");
+		this.RightToLeftCheckButton.DrawIndicator = true;
+		this.RightToLeftCheckButton.UseUnderline = true;
+		this.RegexFlagTable.Add (this.RightToLeftCheckButton);
+		global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.RegexFlagTable [this.RightToLeftCheckButton]));
+		w10.TopAttach = ((uint)(1));
+		w10.BottomAttach = ((uint)(2));
+		w10.LeftAttach = ((uint)(2));
+		w10.RightAttach = ((uint)(3));
+		w10.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child RegexFlagTable.Gtk.Table+TableChild
+		this.SinglelineCheckButton = new global::Gtk.CheckButton ();
+		this.SinglelineCheckButton.CanFocus = true;
+		this.SinglelineCheckButton.Name = "SinglelineCheckButton";
+		this.SinglelineCheckButton.Label = global::Mono.Unix.Catalog.GetString ("Singleline");
+		this.SinglelineCheckButton.DrawIndicator = true;
+		this.SinglelineCheckButton.UseUnderline = true;
+		this.RegexFlagTable.Add (this.SinglelineCheckButton);
+		global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.RegexFlagTable [this.SinglelineCheckButton]));
+		w11.TopAttach = ((uint)(2));
+		w11.BottomAttach = ((uint)(3));
+		w11.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.RegexFrameVBox.Add (this.RegexFlagTable);
+		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.RegexFrameVBox [this.RegexFlagTable]));
+		w12.Position = 1;
+		w12.Expand = false;
+		w12.Fill = false;
 		this.GtkAlignment.Add (this.RegexFrameVBox);
 		this.RegexFrame.Add (this.GtkAlignment);
 		this.RegexFrameLabel = new global::Gtk.Label ();
@@ -180,14 +212,14 @@ public partial class MainWindow
 		this.RegexFrameLabel.UseMarkup = true;
 		this.RegexFrame.LabelWidget = this.RegexFrameLabel;
 		this.MainVBox.Add (this.RegexFrame);
-		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.MainVBox[this.RegexFrame]));
-		w10.Position = 1;
+		global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.MainVBox [this.RegexFrame]));
+		w15.Position = 1;
 		// Container child MainVBox.Gtk.Box+BoxChild
 		this.InputFrame = new global::Gtk.Frame ();
 		this.InputFrame.Name = "InputFrame";
 		this.InputFrame.ShadowType = ((global::Gtk.ShadowType)(0));
 		// Container child InputFrame.Gtk.Container+ContainerChild
-		this.GtkAlignment1 = new global::Gtk.Alignment (0f, 0f, 1f, 1f);
+		this.GtkAlignment1 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
 		this.GtkAlignment1.Name = "GtkAlignment1";
 		this.GtkAlignment1.LeftPadding = ((uint)(12));
 		// Container child GtkAlignment1.Gtk.Container+ContainerChild
@@ -221,8 +253,8 @@ public partial class MainWindow
 		this.ReplaceInputTextView.Name = "ReplaceInputTextView";
 		this.GtkScrolledWindow2.Add (this.ReplaceInputTextView);
 		this.InputStringNotebook.Add (this.GtkScrolledWindow2);
-		global::Gtk.Notebook.NotebookChild w14 = ((global::Gtk.Notebook.NotebookChild)(this.InputStringNotebook[this.GtkScrolledWindow2]));
-		w14.Position = 1;
+		global::Gtk.Notebook.NotebookChild w19 = ((global::Gtk.Notebook.NotebookChild)(this.InputStringNotebook [this.GtkScrolledWindow2]));
+		w19.Position = 1;
 		// Notebook tab
 		this.ReplaceInputLabel = new global::Gtk.Label ();
 		this.ReplaceInputLabel.Name = "ReplaceInputLabel";
@@ -237,14 +269,14 @@ public partial class MainWindow
 		this.InputFrameLabel.UseMarkup = true;
 		this.InputFrame.LabelWidget = this.InputFrameLabel;
 		this.MainVBox.Add (this.InputFrame);
-		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.MainVBox[this.InputFrame]));
-		w17.Position = 2;
+		global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.MainVBox [this.InputFrame]));
+		w22.Position = 2;
 		// Container child MainVBox.Gtk.Box+BoxChild
 		this.ResultFrame = new global::Gtk.Frame ();
 		this.ResultFrame.Name = "ResultFrame";
 		this.ResultFrame.ShadowType = ((global::Gtk.ShadowType)(0));
 		// Container child ResultFrame.Gtk.Container+ContainerChild
-		this.GtkAlignment2 = new global::Gtk.Alignment (0f, 0f, 1f, 1f);
+		this.GtkAlignment2 = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
 		this.GtkAlignment2.Name = "GtkAlignment2";
 		this.GtkAlignment2.LeftPadding = ((uint)(12));
 		// Container child GtkAlignment2.Gtk.Container+ContainerChild
@@ -280,8 +312,8 @@ public partial class MainWindow
 		this.MatchResultTextView.CursorVisible = false;
 		this.GtkScrolledWindow1.Add (this.MatchResultTextView);
 		this.ResultNotebook.Add (this.GtkScrolledWindow1);
-		global::Gtk.Notebook.NotebookChild w21 = ((global::Gtk.Notebook.NotebookChild)(this.ResultNotebook[this.GtkScrolledWindow1]));
-		w21.Position = 1;
+		global::Gtk.Notebook.NotebookChild w26 = ((global::Gtk.Notebook.NotebookChild)(this.ResultNotebook [this.GtkScrolledWindow1]));
+		w26.Position = 1;
 		// Notebook tab
 		this.MatchResultLabel = new global::Gtk.Label ();
 		this.MatchResultLabel.Name = "MatchResultLabel";
@@ -300,8 +332,8 @@ public partial class MainWindow
 		this.ReplaceResultTextView.CursorVisible = false;
 		this.GtkScrolledWindow5.Add (this.ReplaceResultTextView);
 		this.ResultNotebook.Add (this.GtkScrolledWindow5);
-		global::Gtk.Notebook.NotebookChild w23 = ((global::Gtk.Notebook.NotebookChild)(this.ResultNotebook[this.GtkScrolledWindow5]));
-		w23.Position = 2;
+		global::Gtk.Notebook.NotebookChild w28 = ((global::Gtk.Notebook.NotebookChild)(this.ResultNotebook [this.GtkScrolledWindow5]));
+		w28.Position = 2;
 		// Notebook tab
 		this.ReplaceResultLabel = new global::Gtk.Label ();
 		this.ReplaceResultLabel.Name = "ReplaceResultLabel";
@@ -316,8 +348,8 @@ public partial class MainWindow
 		this.ResultFrameLabel.UseMarkup = true;
 		this.ResultFrame.LabelWidget = this.ResultFrameLabel;
 		this.MainVBox.Add (this.ResultFrame);
-		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.MainVBox[this.ResultFrame]));
-		w26.Position = 3;
+		global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.MainVBox [this.ResultFrame]));
+		w31.Position = 3;
 		// Container child MainVBox.Gtk.Box+BoxChild
 		this.statusbar1 = new global::Gtk.Statusbar ();
 		this.statusbar1.Name = "statusbar1";
@@ -327,27 +359,27 @@ public partial class MainWindow
 		this.RegexStatusLabel.Name = "RegexStatusLabel";
 		this.RegexStatusLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Regex: Unkown");
 		this.statusbar1.Add (this.RegexStatusLabel);
-		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.statusbar1[this.RegexStatusLabel]));
-		w27.Position = 1;
-		w27.Expand = false;
-		w27.Fill = false;
+		global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.statusbar1 [this.RegexStatusLabel]));
+		w32.Position = 1;
+		w32.Expand = false;
+		w32.Fill = false;
 		this.MainVBox.Add (this.statusbar1);
-		global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.MainVBox[this.statusbar1]));
-		w28.Position = 4;
-		w28.Expand = false;
-		w28.Fill = false;
+		global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.MainVBox [this.statusbar1]));
+		w33.Position = 4;
+		w33.Expand = false;
+		w33.Fill = false;
 		this.Add (this.MainVBox);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 470;
-		this.DefaultHeight = 538;
+		this.DefaultWidth = 630;
+		this.DefaultHeight = 565;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.openAction.Activated += new global::System.EventHandler (this.OpenActivatedEvent);
 		this.saveAsAction.Activated += new global::System.EventHandler (this.SaveAsActivatedEvent);
 		this.aboutAction.Activated += new global::System.EventHandler (this.AboutActivatedEvent);
-		this.IgnoreCaseCheckButton.Toggled += new global::System.EventHandler (this.IgnoreCaseToggledEvent);
 		this.IgnorePatternWhitespaceCheckButton.Toggled += new global::System.EventHandler (this.IgnorePatternWhitespaceToggledEvent);
+		this.IgnoreCaseCheckButton.Toggled += new global::System.EventHandler (this.IgnoreCaseToggledEvent);
 	}
 }

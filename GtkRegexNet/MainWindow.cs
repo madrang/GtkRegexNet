@@ -80,10 +80,10 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void IgnorePatternWhitespaceToggledEvent (object sender, System.EventArgs e)
 	{
-		if(this.IgnoreCaseCheckButton.Active)
-			this.regopt_CurrentOptions |= RegexOptions.IgnoreCase;
+		if(this.IgnorePatternWhitespaceCheckButton.Active)
+			this.regopt_CurrentOptions |= RegexOptions.IgnorePatternWhitespace;
 		else 
-			this.regopt_CurrentOptions &= ~RegexOptions.IgnoreCase;
+			this.regopt_CurrentOptions &= ~RegexOptions.IgnorePatternWhitespace;
 		
 		this.UpdateRegexObject();
 	}
@@ -114,12 +114,14 @@ public partial class MainWindow : Gtk.Window
 	
 	private void UpdateRegexSearch()
 	{
+		//Delete the old Match view if it already exists.
 		if(this.tvc_MatchesView != null) {
 			this.GroupResultTreeView.RemoveColumn(this.tvc_MatchesView);
 			this.tvc_MatchesView.Destroy();
 			this.tvc_MatchesView.Dispose();
 		}
 		
+		//If we don't have a valid regex instance we can't continue.
 		if(this.reg_CurrentRegex == null)
 			return;
 		
@@ -133,13 +135,16 @@ public partial class MainWindow : Gtk.Window
 		TreeStore Store = new TreeStore(typeof(string));
 		
 		//Init Match Result TextView
+		//Set Match text with the text from the Search input
 		this.MatchResultTextView.Buffer.Text = this.SearchInputTextView.Buffer.Text;
 		
-		//Replace TextView
+		//Set the text in the Replace Text View
 		this.ReplaceResultTextView.Buffer.Text = this.reg_CurrentRegex.Replace(this.SearchInputTextView.Buffer.Text,
-		                                                                       this.ReplaceInputTextView.Buffer.Text);
+			this.ReplaceInputTextView.Buffer.Text);
+		
+		//Set MatchTag on text matching the replace text.
 		if(this.ReplaceInputTextView.Buffer.Text.Length > 0 &&
-		   this.ReplaceResultTextView.Buffer.Text.Length > 0) {
+			this.ReplaceResultTextView.Buffer.Text.Length > 0) {
 			
 			int StartIndex = 0;
 			int Index = 0;
@@ -165,7 +170,7 @@ public partial class MainWindow : Gtk.Window
 			TreeIter Iter = Store.AppendValues(string.Format("Match: {0}", MatchItem.ToString()));
 			this.TreeAddMatch(Store, Iter, MatchItem);
 			
-			//Match TextView add color tag.
+			//Match TextView add MatchTag.
 			TextIter TxtIterStart = this.MatchResultTextView.Buffer.GetIterAtOffset(MatchItem.Index);
 			TextIter TxtIterEnd = this.MatchResultTextView.Buffer.GetIterAtOffset(MatchItem.Index + MatchItem.Length);
 			this.MatchResultTextView.Buffer.ApplyTag("MatchTag", TxtIterStart, TxtIterEnd);
@@ -191,12 +196,13 @@ public partial class MainWindow : Gtk.Window
 	
 	protected virtual void OpenActivatedEvent (object sender, System.EventArgs e)
 	{
-		using (Gtk.FileChooserDialog OpenFile = new Gtk.FileChooserDialog("Regex Open",
-		                                                                  null,
-		                                                                  Gtk.FileChooserAction.Open,
-		                                                                  Gtk.Stock.Open, Gtk.ResponseType.Accept,
-		                                                                  Gtk.Stock.Cancel, Gtk.ResponseType.Cancel
-		                                                                  )){
+		using (var OpenFile = new Gtk.FileChooserDialog(
+			"Regex Open",
+			null,
+			Gtk.FileChooserAction.Open,
+			Gtk.Stock.Open, Gtk.ResponseType.Accept,
+			Gtk.Stock.Cancel, Gtk.ResponseType.Cancel)){
+			
 			OpenFile.SetCurrentFolder(this.sf_Settings.WorkFolder);
 			
 			OpenFile.Filter = new Gtk.FileFilter();
@@ -271,7 +277,7 @@ public partial class MainWindow : Gtk.Window
 		this.sf_Settings.Save(SettingPath);
 	}
 	
-		protected virtual void AboutActivatedEvent (object sender, System.EventArgs e)
+	protected virtual void AboutActivatedEvent (object sender, System.EventArgs e)
 	{
 		AboutDialog AboutBox = new AboutDialog();
 		AboutBox.ProgramName = "GtkRegexNet";
