@@ -49,7 +49,7 @@ public partial class MainWindow
 	private global::Gtk.Label ResultFrameLabel;
 	private global::Gtk.Statusbar statusbar1;
 	private global::Gtk.Label RegexStatusLabel;
-    
+	
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);
